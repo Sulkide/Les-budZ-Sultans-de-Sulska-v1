@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://bkay62k8fatoy"]
+[gd_scene load_steps=9 format=3 uid="uid://bkay62k8fatoy"]
 
 [ext_resource type="PackedScene" uid="uid://s0jp0sp5duga" path="res://Scenes/player.tscn" id="1_10lpn"]
+[ext_resource type="PackedScene" uid="uid://c8usfwvcdaa76" path="res://Scenes/enemy.tscn" id="1_ovy8i"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r0ivf"]
 size = Vector3(100, 1, 1)
@@ -97,6 +98,9 @@ shape = SubResource("BoxShape3D_ovy8i")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Level/StaticBody3D7/CollisionShape3D" unique_id=329832341]
 mesh = SubResource("BoxMesh_vh5rs")
 skeleton = NodePath("../../../StaticBody3D4")
+
+[node name="Enemy" parent="." unique_id=630029366 instance=ExtResource("1_ovy8i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.509796, 1.2894635, 0)
 
 [node name="Player" parent="." unique_id=598794534 instance=ExtResource("1_10lpn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6651468, 0)
