@@ -131,3 +131,6 @@ block_size = null
 [node name="Player" parent="." unique_id=598794534 instance=ExtResource("1_10lpn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6651468, 0)
 SPEED = 10.0
+JUMP_VELOCITY = 35.0
+DASH_DURATION = 0.03
+DASH_SPEED = 100.0
