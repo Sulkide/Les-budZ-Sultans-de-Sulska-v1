@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://s0jp0sp5duga"]
+[gd_scene load_steps=8 format=3 uid="uid://s0jp0sp5duga"]
 
 [ext_resource type="Script" uid="uid://dmli2hik7mqkn" path="res://Scripts/Player/PlayerMovement.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://7i0mf14xk2hr" path="res://Assets/Sprite/Player/1f344.png" id="1_v0iea"]
+[ext_resource type="Script" uid="uid://dqj7llsipyuva" path="res://Scenes/player_collision_2d.gd" id="3_6t5aa"]
+[ext_resource type="Script" uid="uid://dtvvtkt0nywth" path="res://Scenes/player_body_2d.gd" id="3_vgqql"]
 
 [sub_resource type="GDScript" id="GDScript_v0iea"]
 script/source = "extends Sprite3D
@@ -38,10 +40,15 @@ script = SubResource("GDScript_v0iea")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=110083878]
 shape = SubResource("CapsuleShape3D_cvnsp")
 
-[node name="CollisionShape2D" type="CollisionShape3D" parent="." unique_id=975230936]
-shape = SubResource("ConvexPolygonShape3D_cvnsp")
-
 [node name="Camera3D" type="Camera3D" parent="." unique_id=361799049]
 transform = Transform3D(1, 0, 0, 0, 0.9876885, 0.15643449, 0, -0.15643449, 0.9876885, 0, 7.7, 17)
 current = true
 size = 35.0
+
+[node name="PlayerBody2D" type="CharacterBody3D" parent="." unique_id=599411040]
+script = ExtResource("3_vgqql")
+
+[node name="PlayerCollision2D" type="CollisionShape3D" parent="PlayerBody2D" unique_id=975230936]
+shape = SubResource("ConvexPolygonShape3D_cvnsp")
+debug_color = Color(0.89274335, 0.3276922, 1, 0.41960785)
+script = ExtResource("3_6t5aa")

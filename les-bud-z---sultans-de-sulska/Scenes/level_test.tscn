@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://bkay62k8fatoy"]
+[gd_scene load_steps=13 format=3 uid="uid://bkay62k8fatoy"]
 
 [ext_resource type="PackedScene" uid="uid://s0jp0sp5duga" path="res://Scenes/player.tscn" id="1_10lpn"]
+[ext_resource type="PackedScene" uid="uid://dmdwgr1ahfwuw" path="res://Scenes/terrain_block.tscn" id="1_ovy8i"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r0ivf"]
 size = Vector3(100, 1, 100)
@@ -122,6 +123,10 @@ shape = SubResource("BoxShape3D_d8tg7")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Level/StaticBody3D8/CollisionShape3D" unique_id=1425381919]
 mesh = SubResource("BoxMesh_bxe70")
 skeleton = NodePath("../..")
+
+[node name="TerrainBlock" parent="Level" unique_id=1387569953 instance=ExtResource("1_ovy8i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.431592, 1.4741383, 8.33424)
+block_size = null
 
 [node name="Player" parent="." unique_id=598794534 instance=ExtResource("1_10lpn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6651468, 0)
