@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://s0jp0sp5duga"]
+[gd_scene load_steps=6 format=3 uid="uid://s0jp0sp5duga"]
 
-[ext_resource type="Script" uid="uid://dmli2hik7mqkn" path="res://Scripts/player/PlayerMovement.gd" id="1_cvnsp"]
+[ext_resource type="Script" uid="uid://dmli2hik7mqkn" path="res://Scripts/Player/PlayerMovement.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://7i0mf14xk2hr" path="res://Assets/Sprite/Player/1f344.png" id="1_v0iea"]
 
 [sub_resource type="GDScript" id="GDScript_v0iea"]
@@ -19,6 +19,9 @@ func _process(delta: float) -> void:
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cvnsp"]
 
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_cvnsp"]
+points = PackedVector3Array(0.355, 0.855, 50, -0.355, -0.855, 50, 0.355, -0.855, 50, -0.355, 0.855, 50, 0.5, -0.5, 50, -0.5, 0.5, 50, 0.5, 0.5, 50, -0.5, -0.5, 50, 0, 1, 50, 0, -1, 50, 0.19, 0.96, 50, -0.19, -0.96, 50, -0.19, 0.96, 50, 0.19, -0.96, 50, 0.355, 0.855, 50, -0.355, -0.855, -50, 0.355, -0.855, -50, -0.355, 0.855, -50, 0, 1, -50, 0, -1, -50, 0.5, 0.5, -50, -0.5, -0.5, -50, -0.5, 0.5, -50, 0.5, -0.5, -50, 0.19, 0.96, -50, -0.19, -0.96, -50, -0.19, 0.96, -50, 0.19, -0.96, -50)
+
 [node name="Player" type="CharacterBody3D" unique_id=598794534]
 script = ExtResource("1_cvnsp")
 GRAVITY = 75.0
@@ -35,7 +38,10 @@ script = SubResource("GDScript_v0iea")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=110083878]
 shape = SubResource("CapsuleShape3D_cvnsp")
 
+[node name="CollisionShape2D" type="CollisionShape3D" parent="." unique_id=975230936]
+shape = SubResource("ConvexPolygonShape3D_cvnsp")
+
 [node name="Camera3D" type="Camera3D" parent="." unique_id=361799049]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 29.877289)
-size = 26.51
-near = 0.341
+transform = Transform3D(1, 0, 0, 0, 0.9876885, 0.15643449, 0, -0.15643449, 0.9876885, 0, 7.7, 17)
+current = true
+size = 35.0
