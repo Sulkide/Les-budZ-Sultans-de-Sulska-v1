@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bkay62k8fatoy"]
+[gd_scene load_steps=11 format=3 uid="uid://bkay62k8fatoy"]
 
 [ext_resource type="PackedScene" uid="uid://s0jp0sp5duga" path="res://Scenes/player.tscn" id="1_10lpn"]
 
@@ -19,6 +19,16 @@ size = Vector3(10, 1, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_vh5rs"]
 size = Vector3(10, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d8tg7"]
+size = Vector3(100, 100, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vh5rs"]
+albedo_color = Color(1.0765535e-06, 0.4748939, 0.3224398, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bxe70"]
+material = SubResource("StandardMaterial3D_vh5rs")
+size = Vector3(100, 100, 1)
 
 [node name="Level Test" type="Node3D" unique_id=816915117]
 
@@ -97,6 +107,27 @@ shape = SubResource("BoxShape3D_ovy8i")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Level/StaticBody3D7/CollisionShape3D" unique_id=329832341]
 mesh = SubResource("BoxMesh_vh5rs")
 skeleton = NodePath("../../../StaticBody3D4")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Level" unique_id=1845246708]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9358122, 2.4124851)
+light_energy = 4.826
+light_indirect_energy = 2.391
+light_volumetric_fog_energy = 4.71
+light_size = 0.25
+light_specular = 1.01
+shadow_enabled = true
+shadow_bias = 0.4
+
+[node name="StaticBody3D8" type="StaticBody3D" parent="Level" unique_id=1656650028]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.129903)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/StaticBody3D8" unique_id=1948634655]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0654068, 0, 0)
+shape = SubResource("BoxShape3D_d8tg7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/StaticBody3D8/CollisionShape3D" unique_id=1425381919]
+mesh = SubResource("BoxMesh_bxe70")
+skeleton = NodePath("../..")
 
 [node name="Player" parent="." unique_id=598794534 instance=ExtResource("1_10lpn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6651468, 0)
