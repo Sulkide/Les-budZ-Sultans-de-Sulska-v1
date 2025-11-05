@@ -32,6 +32,8 @@ var can_dash := false
 var dash_dir :Vector3
 var hasJumped := false
 var hasDashed := false
+var wallOnLeft := false
+var wallOnRight := false
 
 func _ready():
 	z_plane_value = global_position.z
@@ -106,6 +108,16 @@ func _physics_process(delta):
 				velocity.x = WALL_JUMP_PUSHBACK * n.x
 				coyote_jump_available = false
 				input_buffer.stop()
+		elif wallOnLeft:
+			velocity.y = -WALL_JUMP_VELOCITY
+			velocity.x = WALL_JUMP_PUSHBACK
+			coyote_jump_available = false
+			input_buffer.stop()
+		elif wallOnRight:
+			velocity.y = -WALL_JUMP_VELOCITY
+			velocity.x = -WALL_JUMP_PUSHBACK
+			coyote_jump_available = false
+			input_buffer.stop()
 		elif jump_pressed:
 			input_buffer.start()
 
@@ -160,3 +172,21 @@ func _on_coyote_timeout():
 
 func _get_dash_dir():
 	Input.get_vector("move_left", "move_right","move_approach","move_away")
+
+
+func _on_wall_detect_left_body_entered(body: Node3D) -> void:
+	if body.is_in_group("Wall"):
+		wallOnLeft = true
+
+func _on_wall_detect_left_body_exited(body: Node3D) -> void:
+	if body.is_in_group("Wall"):
+		print("haha")
+		wallOnLeft = false
+
+func _on_wall_detect_right_body_entered(body: Node3D) -> void:
+	if body.is_in_group("Wall"):
+		print("haha")
+		wallOnRight = true
+func _on_wall_detect_right_body_exited(body: Node3D) -> void:
+	if body.is_in_group("Wall"):
+		wallOnRight = false

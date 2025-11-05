@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://s0jp0sp5duga"]
+[gd_scene load_steps=7 format=3 uid="uid://s0jp0sp5duga"]
 
 [ext_resource type="Script" uid="uid://dmli2hik7mqkn" path="res://Scripts/Player/PlayerMovement.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://7i0mf14xk2hr" path="res://Assets/Sprite/Player/1f344.png" id="1_v0iea"]
@@ -21,6 +21,9 @@ func _process(delta: float) -> void:
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_cvnsp"]
 points = PackedVector3Array(0.355, 0.855, 50, -0.355, -0.855, 50, 0.355, -0.855, 50, -0.355, 0.855, 50, 0.5, -0.5, 50, -0.5, 0.5, 50, 0.5, 0.5, 50, -0.5, -0.5, 50, 0, 1, 50, 0, -1, 50, 0.19, 0.96, 50, -0.19, -0.96, 50, -0.19, 0.96, 50, 0.19, -0.96, 50, 0.355, 0.855, 50, -0.355, -0.855, -50, 0.355, -0.855, -50, -0.355, 0.855, -50, 0, 1, -50, 0, -1, -50, 0.5, 0.5, -50, -0.5, -0.5, -50, -0.5, 0.5, -50, 0.5, -0.5, -50, 0.19, 0.96, -50, -0.19, -0.96, -50, -0.19, 0.96, -50, 0.19, -0.96, -50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cvnsp"]
+size = Vector3(0.087402344, 1, 1)
 
 [node name="Player" type="CharacterBody3D" unique_id=598794534]
 script = ExtResource("1_cvnsp")
@@ -45,3 +48,22 @@ shape = SubResource("ConvexPolygonShape3D_cvnsp")
 transform = Transform3D(1, 0, 0, 0, 0.9876885, 0.15643449, 0, -0.15643449, 0.9876885, 0, 7.7, 17)
 current = true
 size = 35.0
+
+[node name="WallDetectLeft" type="Area3D" parent="." unique_id=1277320844]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 101.117546, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallDetectLeft" unique_id=354261941]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5246582, 0, 0)
+shape = SubResource("BoxShape3D_cvnsp")
+
+[node name="WallDetectRight" type="Area3D" parent="." unique_id=947560172]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 101.117546, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallDetectRight" unique_id=158315537]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.525, 0, 0)
+shape = SubResource("BoxShape3D_cvnsp")
+
+[connection signal="body_entered" from="WallDetectLeft" to="." method="_on_wall_detect_left_body_entered"]
+[connection signal="body_exited" from="WallDetectLeft" to="." method="_on_wall_detect_left_body_exited"]
+[connection signal="body_entered" from="WallDetectRight" to="." method="_on_wall_detect_right_body_entered"]
+[connection signal="body_exited" from="WallDetectRight" to="." method="_on_wall_detect_right_body_exited"]
